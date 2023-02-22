@@ -25,7 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY", default="django-insecure-9!17&8@5puc$3tqpz&-#a5_773ifoc5ba76)_nymyqe7vw$87)")
+SECRET_KEY = env(
+    "SECRET_KEY",
+    default="django-insecure-9!17&8@5puc$3tqpz&-#a5_773ifoc5ba76)_nymyqe7vw$87)",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=False)
@@ -43,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "the_chamber_of_chatting_app"
 ]
 
 MIDDLEWARE = [
@@ -134,6 +138,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
+
+STATIC_ROOT = BASE_DIR / "static"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
