@@ -80,7 +80,7 @@ WSGI_APPLICATION = "the_chamber_of_chatting.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 if env.bool("PRODUCTION", default=False):
-    DATABASEs = {
+    DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
             "NAME": env("DB_NAME"),
