@@ -16,7 +16,7 @@ class TopicSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Topic
         fields = [
-            "topic_name"
+            "topic_name",
             "created"
         ]
         
@@ -24,6 +24,6 @@ class MessageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Message
         fields = [
-            "message"
+            "message",
             "created"
         ]
