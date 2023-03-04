@@ -13,6 +13,8 @@ import "quasar/dist/quasar.css";
 import axios from "axios";
 
 axios.defaults.baseURL = import.meta.env.VITE_APP_API_URL;
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
+axios.defaults.xsrfCookieName = "csrftoken";
 
 const app = createApp(App);
 
