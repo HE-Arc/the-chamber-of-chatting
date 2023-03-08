@@ -8,7 +8,7 @@
     </q-toolbar>
     <q-tabs align="left">
       <q-route-tab :to="{ name: 'home' }" label="Home" />
-
+      <q-route-tab :to="{ name: 'new-topic' }" label="New Topic" />
       <q-route-tab :to="{ name: 'about' }" label="About" />
     </q-tabs>
   </q-header>
