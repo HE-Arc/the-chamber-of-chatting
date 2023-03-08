@@ -16,7 +16,7 @@ onMounted(() => {
 
 <template>
   <q-page padding>
-    <q-btn color="primary" :to="{ name: 'new-topic' }"> New Topic </q-btn>
+    <q-btn color="primary" :to="{ name: 'topics.create' }"> New Topic </q-btn>
     <q-list bordered>
       <q-item v-for="topic in topics" :key="topic.id">
         <q-item-section>

@@ -11,8 +11,8 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/new-topic",
-      name: "new-topic",
+      path: "/topics/create",
+      name: "topics.create",
       component: CreateTopicView,
     },
     {
