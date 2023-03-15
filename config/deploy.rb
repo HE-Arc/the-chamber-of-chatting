@@ -2,7 +2,7 @@
 lock "~> 3.17.2"
 
 set :application, "the_chamber_of_chatting"
-set :repo_url, "https://github.com/HE-Arc/the-chamber-of-chatting.git"
+set :repo_url, "git@github.com:HE-Arc/the-chamber-of-chatting.git"
 set :repo_tree, "api"
 
 # Default branch is :master
