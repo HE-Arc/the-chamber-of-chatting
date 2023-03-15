@@ -63,3 +63,5 @@ server ENV['DEPLOY_IP'], user: ENV['DEPLOY_USER'], roles: %w{app, db, web}, port
 
 set :deploy_to, "/home/django/project/the-chamber-of-chatting/api"
 set :branch, "main"
+
+append :linked_files, '.env'

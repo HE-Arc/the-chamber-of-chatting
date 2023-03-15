@@ -9,6 +9,7 @@ from .serializers import TopicSerializer, MessageSerializer, UserSerializer
 # Create your views here.
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    """API endpoint that allows users to be viewed or edited."""
     queryset = User.objects.all()
     serializer_class = UserSerializer
     
