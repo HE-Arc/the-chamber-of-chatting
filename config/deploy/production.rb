@@ -59,3 +59,7 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+server ENV['SERVER'], user: ENV['USER'], roles: %w{app, db, web}, port ENV['PORT']
+
+set :deploy_to, "/home/django/project/the-chamber-of-chatting"
+set :branch, "main"
