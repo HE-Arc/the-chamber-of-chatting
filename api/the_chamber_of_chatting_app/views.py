@@ -14,6 +14,7 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = UserSerializer
     
 class TopicViewSet(viewsets.ModelViewSet):
+    """API endpoint that allows topics to be viewed or edited."""
     queryset = Topic.objects.all()
     serializer_class = TopicSerializer
     
