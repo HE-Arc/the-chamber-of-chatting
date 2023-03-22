@@ -61,4 +61,15 @@ namespace :gunicorn do
     end
 end
 
+after 'gunicorn:restart', 'django:migrate'
+
+namespace :django do
+    desc 'Migrate'
+    task :migrate do
+        on roles(:web) do |h|
+            execute "python3 #{release_path}/manage.py migrate"
+        end
+    end
+end
+
 
