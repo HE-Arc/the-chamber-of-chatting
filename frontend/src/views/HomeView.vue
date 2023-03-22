@@ -26,7 +26,7 @@ onMounted(() => {
       <div class="col-12 q-mt-md">
         <q-card class="q-pa-lg">
 			<q-list bordered>
-				  <q-item v-for="topic in topics" :key="topic.id">
+        <q-item v-for="topic in topics" :key="topic.id">
 					<q-item-section>
 					  <q-item-label>{{ topic.topic_name }}</q-item-label>
 					</q-item-section>
