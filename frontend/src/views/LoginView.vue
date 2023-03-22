@@ -2,13 +2,15 @@
 import axios from "axios";
 import { ref } from "vue";
 
-const name = ref("");
+const username = ref("");
+const password = ref("");
 const submit = async () => {
   try {
     errors.value = null;
     success.value = false;
     await axios.post("/login/", {
-      topic_name: name.value,
+      username: username.value,
+      pasword: pasword.value,
     });
     success.value = true;
   } catch (error) {
@@ -42,7 +44,7 @@ const success = ref(null);
             <q-input
               filled
               v-model="name"
-              label="User name"
+              label="username"
               lazy-rules
               :rules="[
                 (val) =>
@@ -50,9 +52,10 @@ const success = ref(null);
               ]"
             />
             <q-input
+              type="password"
               filled
-              v-model="name"
-              label="Password"
+              v-model="password"
+              label="password"
               lazy-rules
               :rules="[
                 (val) =>
