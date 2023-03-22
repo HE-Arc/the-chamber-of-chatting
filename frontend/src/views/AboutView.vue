@@ -1,13 +1,6 @@
-<!-- <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
-</template> -->
-
-
 <template>
   <q-page padding>
-    <q-btn color="primary" :to="{ name: 'home' }">
+    <q-btn color="primary" @click="this.$router.back()">
       <q-icon left name="arrow_back" />
       <div>Back</div>
     </q-btn>
