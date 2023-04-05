@@ -24,9 +24,9 @@ function logOut(){
       <q-route-tab :to="{ name: 'topics.create' }" label="New Topic" />
       <q-route-tab :to="{ name: 'about' }" label="About" />
       <q-space />
-
+<!-- 
       <q-route-tab v-if=getSessionCookie() :to="{ name: 'logout' }" label="logout" onclick=logOut(); />
-      <q-route-tab v-else :to="{ name: 'login' }" label="login" />
+      <q-route-tab v-else :to="{ name: 'login' }" label="login" /> -->
       <q-route-tab :to="{ name: 'register' }" label="register" />
 
     </q-tabs>
