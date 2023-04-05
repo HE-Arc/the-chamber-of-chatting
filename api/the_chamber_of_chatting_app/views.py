@@ -31,7 +31,7 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
             login(request, user)
             return Response(status=status.HTTP_200_OK)
             print("login")
-        return Response({"error": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"error": "Invalid credentials"}, status=status.HTTP_403_FORBIDDEN)
     
     @action(detail=False, methods=["POST"], url_path="register")
     def user_register(self, request):
