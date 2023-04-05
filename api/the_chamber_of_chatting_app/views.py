@@ -18,14 +18,19 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
 
     @action(detail=False, methods=["POST"], url_path="login")
     def user_login(self, request):
+        print(request)
         username = request.data.get("username")
         password = request.data.get("password")
+        print(f"fetch data, username: {username}, password: {password}")
         if not username or not password:
             return Response({"error": "Please provide both username and password"}, status=status.HTTP_400_BAD_REQUEST)
+        print("check data")
         user = authenticate(username=username, password=password)
+        print("authenticate")
         if user is not None:
             login(request, user)
             return Response(status=status.HTTP_200_OK)
+            print("login")
         return Response({"error": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
     
     @action(detail=False, methods=["POST"], url_path="register")

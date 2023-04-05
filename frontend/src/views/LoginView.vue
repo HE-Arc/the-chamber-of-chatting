@@ -8,9 +8,9 @@ const submit = async () => {
   try {
     errors.value = null;
     success.value = false;
-    await axios.post("/login/", {
+    await axios.post("users/login/", {
       username: username.value,
-      pasword: password.value,
+      password: password.value,
     });
     success.value = true;
   } catch (error) {
@@ -42,7 +42,7 @@ const success = ref(null);
           <q-form @submit="submit()" class="q-gutter-md">
             <q-input
               filled
-              v-model="name"
+              v-model="username"
               label="username"
               lazy-rules
               :rules="[
