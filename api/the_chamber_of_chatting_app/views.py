@@ -27,6 +27,20 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
             login(request, user)
             return Response(status=status.HTTP_200_OK)
         return Response({"error": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
+    
+    @action(detail=False, methods=["POST"], url_path="register")
+    def user_register(self, request):
+        username = request.data.get("username")
+        password = request.data.get("password")
+        check_password = request.data.get("check_password")
+        if not username or not password or not check_password:
+            return Response({"error": "Please provide all fields"}, status=status.HTTP_400_BAD_REQUEST)
+        if password != check_password:
+            return Response({"error": "Passwords do not match"}, status=status.HTTP_400_BAD_REQUEST)
+        user = User.objects.create_user(username=username, password=password)
+        login (request, user)
+        return Response(status=status.HTTP_200_OK)
+    
 
 class TopicViewSet(viewsets.ModelViewSet):
     """API endpoint that allows topics to be viewed or edited."""
