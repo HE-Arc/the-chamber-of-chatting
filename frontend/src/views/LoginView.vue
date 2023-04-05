@@ -69,7 +69,7 @@ const success = ref(null);
             >
               <div class="text-h6">
                 <q-icon left size="md" name="mdi-check-circle-outline" />
-                New Topic created!
+                Login successfull
               </div>
             </q-banner>
           </q-form>

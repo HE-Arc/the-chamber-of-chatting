@@ -1,5 +1,18 @@
 <script setup></script>
 
+<script>
+import VueCookies from 'vue-cookies'
+
+function getSessionCookie(){
+  let sessionCookie = VueCookies.get('session_cookie');
+  return sessionCookie;
+}
+
+function logOut(){
+  VueCookies.remove('session_cookie');
+}
+</script>
+
 <template>
   <q-header reveal elevated class="bg-grey-10 text-white" height-hint="98">
     <q-toolbar>
@@ -11,7 +24,14 @@
       <q-route-tab :to="{ name: 'topics.create' }" label="New Topic" />
       <q-route-tab :to="{ name: 'about' }" label="About" />
       <q-space />
-      <q-route-tab :to="{ name: 'login' }" label="login" />
+
+      <q-route-tab :to="{ name: 'logout' }" label="logout" onclick=req.session.destroy(); />
+
+      <q-route-tab v-if=sessionCookie :to="{ name: 'logout' }" label="logout" onclick=logOut(); />
+      <q-route-tab v-else :to="{ name: 'login' }" label="login" />
+      <q-route-tab :to="{ name: 'register' }" label="register" />
+
+
     </q-tabs>
   </q-header>
 </template>

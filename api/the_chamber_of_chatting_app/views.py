@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
@@ -46,6 +46,10 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
         login (request, user)
         return Response(status=status.HTTP_200_OK)
     
+    @action(detail=False, methods=["POST"], url_path="logout")
+    def logout_view(request):
+        logout(request)
+        return Response(status=status.HTTP_200_OK)
 
 class TopicViewSet(viewsets.ModelViewSet):
     """API endpoint that allows topics to be viewed or edited."""
