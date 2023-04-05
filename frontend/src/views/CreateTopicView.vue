@@ -11,7 +11,7 @@ const submit = async () => {
     success.value = false;
     await axios.post("/topics/", {
       topic_name: name.value,
-      message: [],
+      messages: [],
     });
     success.value = true;
   } catch (error) {
