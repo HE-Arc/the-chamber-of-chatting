@@ -6,19 +6,21 @@ import router from "../router";
 
 const username = ref("");
 const password = ref("");
+const checkPassword = ref("");
 const submit = async () => {
   try {
     errors.value = null;
     success.value = false;
-    await axios.post("users/login/", {
+    await axios.post("users/register/", {
       username: username.value,
       password: password.value,
+      check_password: checkPassword.value,
     });
     success.value = true;
   } catch (error) {
     errors.value = error.response.data;
   }
-  router.push({ name: "home" });
+  // router.push({ name: "home" });
 };
 
 const errors = ref(null);
@@ -62,6 +64,14 @@ const success = ref(null);
                 (val) => (val && val.length > 0) || 'Password is requiered',
               ]"
             />
+            <q-input
+              type="password"
+              filled
+              v-model="checkPassword"
+              label="password confirmation"
+              lazy-rules
+              :rules="[(val) => val == password || 'Password doesn\'t match']"
+            />
             <div>
               <q-btn label="Submit" type="submit" color="primary" />
             </div>
@@ -76,7 +86,7 @@ const success = ref(null);
               </div>
             </q-banner>
           </q-form>
-          <router-link to="/register">Register</router-link>
+          <router-link to="/login">Login</router-link>
         </q-card>
       </div>
     </div>
