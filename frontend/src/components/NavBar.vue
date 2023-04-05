@@ -25,12 +25,9 @@ function logOut(){
       <q-route-tab :to="{ name: 'about' }" label="About" />
       <q-space />
 
-      <!-- <q-route-tab :to="{ name: 'logout' }" label="logout" onclick=logOut(); /> -->
-
-      <q-route-tab v-if=sessionCookie :to="{ name: 'logout' }" label="logout" onclick=logOut(); />
+      <q-route-tab v-if=getSessionCookie() :to="{ name: 'logout' }" label="logout" onclick=logOut(); />
       <q-route-tab v-else :to="{ name: 'login' }" label="login" />
       <q-route-tab :to="{ name: 'register' }" label="register" />
-
 
     </q-tabs>
   </q-header>
