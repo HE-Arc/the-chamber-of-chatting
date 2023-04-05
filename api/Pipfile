@@ -4,13 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
-djangorestframework = "*"
-django-environ = "*"
-django-cors-headers = "*"
+django = "4.1.7"
+djangorestframework = "3.14.0"
+django-environ = "0.10.0"
+django-cors-headers = "3.14.0"
 
 [dev-packages]
-black = "*"
+black = "23.1.0"
 
 [requires]
 python_version = "3.10"
