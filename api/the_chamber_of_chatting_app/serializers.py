@@ -15,6 +15,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             "email",
             "first_name",
             "last_name",
+            "topics",
             "messages",
         ]
 
@@ -26,6 +27,7 @@ class TopicSerializer(serializers.HyperlinkedModelSerializer):
             "id",
             "url",
             "topic_name",
+            "user_id",
             "created",
             "messages",
         ]
