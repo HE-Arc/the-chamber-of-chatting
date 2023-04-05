@@ -10,7 +10,7 @@ const submit = async () => {
     success.value = false;
     await axios.post("/login/", {
       username: username.value,
-      pasword: pasword.value,
+      pasword: password.value,
     });
     success.value = true;
   } catch (error) {
@@ -23,32 +23,30 @@ const success = ref(null);
 </script>
 
 <template>
-    <q-page padding>
-      <div class="row self-center justify-evenly">
-        <div class="col-6 q-mt-md">
-          <q-btn color="primary" @click="this.$router.back()">
-            <q-icon left name="arrow_back" />
-            <div>Back</div>
-          </q-btn>
-        </div>
+  <q-page padding>
+    <div class="row self-center justify-evenly">
+      <div class="col-6 q-mt-md">
+        <q-btn color="primary" @click="this.$router.back()">
+          <q-icon left name="arrow_back" />
+          <div>Back</div>
+        </q-btn>
       </div>
-        <div class="row self-center justify-evenly">
-          <div class="col-6 q-mt-md">
-            <q-card class="q-pa-lg">
-  
-              <q-card-section class="text-center">
-                <div class="text-h5">Login</div>
-              </q-card-section>
-              
-              <q-form @submit="submit()" class="q-gutter-md">
+    </div>
+    <div class="row self-center justify-evenly">
+      <div class="col-6 q-mt-md">
+        <q-card class="q-pa-lg">
+          <q-card-section class="text-center">
+            <div class="text-h5">Login</div>
+          </q-card-section>
+
+          <q-form @submit="submit()" class="q-gutter-md">
             <q-input
               filled
               v-model="name"
               label="username"
               lazy-rules
               :rules="[
-                (val) =>
-                  (val && val.length > 0) || 'User name is requiered',
+                (val) => (val && val.length > 0) || 'User name is requiered',
               ]"
             />
             <q-input
@@ -58,8 +56,7 @@ const success = ref(null);
               label="password"
               lazy-rules
               :rules="[
-                (val) =>
-                  (val && val.length > 0) || 'Password is requiered',
+                (val) => (val && val.length > 0) || 'Password is requiered',
               ]"
             />
             <div>
@@ -76,12 +73,10 @@ const success = ref(null);
               </div>
             </q-banner>
           </q-form>
-  
-            </q-card>
-          </div>
-        </div>
-    </q-page>
-  </template>
-  
-  <style scoped></style>
-  
+        </q-card>
+      </div>
+    </div>
+  </q-page>
+</template>
+
+<style scoped></style>

@@ -10,7 +10,7 @@
       <q-route-tab :to="{ name: 'home' }" label="Home" />
       <q-route-tab :to="{ name: 'topics.create' }" label="New Topic" />
       <q-route-tab :to="{ name: 'about' }" label="About" />
-      <q-space/>
+      <q-space />
       <q-route-tab :to="{ name: 'login' }" label="login" />
     </q-tabs>
   </q-header>

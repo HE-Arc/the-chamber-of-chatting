@@ -2,6 +2,8 @@
 import axios from "axios";
 import { ref } from "vue";
 
+import router from "../router";
+
 const name = ref("");
 const submit = async () => {
   try {
@@ -14,6 +16,7 @@ const submit = async () => {
   } catch (error) {
     errors.value = error.response.data;
   }
+  router.push({ name: "home" });
 };
 
 const errors = ref(null);
