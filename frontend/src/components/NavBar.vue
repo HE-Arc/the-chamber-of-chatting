@@ -1,16 +1,18 @@
-<script setup></script>
-
 <script>
 import VueCookies from 'vue-cookies'
 
-function getSessionCookie(){
-  let sessionCookie = VueCookies.get('session_cookie');
-  return sessionCookie;
-}
-
-function logOut(){
-  VueCookies.remove('session_cookie');
-}
+let session;
+export default {
+  methods: {
+    getSessionCookie(){
+      session = VueCookies.get('sessionid');
+      return session;
+    },
+    logOut(){
+      session = null;
+    }
+  }
+};
 </script>
 
 <template>
@@ -24,9 +26,9 @@ function logOut(){
       <q-route-tab :to="{ name: 'topics.create' }" label="New Topic" />
       <q-route-tab :to="{ name: 'about' }" label="About" />
       <q-space />
-<!-- 
+
       <q-route-tab v-if=getSessionCookie() :to="{ name: 'logout' }" label="logout" onclick=logOut(); />
-      <q-route-tab v-else :to="{ name: 'login' }" label="login" /> -->
+      <q-route-tab v-else :to="{ name: 'login' }" label="login" />
       <q-route-tab :to="{ name: 'register' }" label="register" />
 
     </q-tabs>
