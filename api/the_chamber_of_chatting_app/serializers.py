@@ -39,6 +39,8 @@ class MessageSerializer(serializers.HyperlinkedModelSerializer):
         fields = [
             "id",
             "url",
+            "user_id",
+            "topic_id",
             "message",
             "created",
         ]
