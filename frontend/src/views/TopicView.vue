@@ -2,6 +2,7 @@
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import moment from 'moment';
 
 const topic = ref([]);
 const messages = ref([]);
@@ -26,20 +27,24 @@ onMounted(() => {
         <div class="row self-center justify-evenly">
           <div class="col-12 q-mt-md">
             <q-card class="q-pa-lg">
-  
+ 
               <q-card-section class="text-center">
                 <div class="text-h5">{{ topic.topic_name }}</div>
               </q-card-section>
-
-              <q-list bordered>
-                <q-item v-for="msg in topic.messages" :key="msg.id">
-                    <q-item-section>
-                        <q-item-label>{{ msg.message }}</q-item-label>
-                    </q-item-section>
-                    </q-item>
-                </q-list>
-
+                <div class="q-pa-md row justify-center">
+                <div style="width: 100%">
+                    <q-chat-message v-for="msg in topic.messages" :key="msg.id"
+                    :name=[msg.user_id.username]
+                    :text="[msg.message]"
+                    
+                    :stamp="[moment(msg.created).fromNow()]"
+                    
+                    /></div>
+                    <!-- ajouter un v-if pour mettre le "sent" quand c'est nos messages -->
+                    <!-- :stamp="[msg.created]" -->
+                </div>
             </q-card>
+
           </div>
         </div>
     </q-page>
