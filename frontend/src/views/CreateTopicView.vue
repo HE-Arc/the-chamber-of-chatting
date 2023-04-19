@@ -5,16 +5,23 @@ import { ref } from "vue";
 import router from "../router";
 
 const name = ref("");
+const message = ref("");
 const submit = async () => {
   try {
     errors.value = null;
     success.value = false;
-    await axios.post("/topics/", {
+    const topic = await axios.post("/topics/", {
       topic_name: name.value,
       messages: [],
     });
+    await axios.post("/messages/", {
+      topic_id: topic.data.url,
+      message: message.value,
+    });
+
     success.value = true;
   } catch (error) {
+    console.log(error);
     errors.value = error.response.data;
   }
   router.push({ name: "home" });
@@ -47,6 +54,17 @@ const success = ref(null);
               :rules="[
                 (val) =>
                   (val && val.length > 0) || 'Please give a name to your topic',
+              ]"
+            />
+            <q-input
+              filled
+              v-model="message"
+              label="Message *"
+              lazy-rules
+              :rules="[
+                (val) =>
+                  (val && val.length > 0) ||
+                  'Please give a message to your topic',
               ]"
             />
             <div>
