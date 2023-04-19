@@ -20,19 +20,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         ]
 
 
-class TopicSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Topic
-        fields = [
-            "id",
-            "url",
-            "topic_name",
-            "user_id",
-            "created",
-            "messages",
-        ]
-
-
 class MessageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Message
@@ -43,4 +30,19 @@ class MessageSerializer(serializers.HyperlinkedModelSerializer):
             "topic_id",
             "message",
             "created",
+        ]
+
+
+class TopicSerializer(serializers.HyperlinkedModelSerializer):
+    messages = MessageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Topic
+        fields = [
+            "id",
+            "url",
+            "topic_name",
+            "user_id",
+            "created",
+            "messages",
         ]

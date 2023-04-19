@@ -6,7 +6,6 @@ from rest_framework.response import Response
 
 from .models import Message, Topic
 from .serializers import MessageSerializer, TopicSerializer, UserSerializer
-
 # Create your views here.
 
 
