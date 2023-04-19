@@ -20,7 +20,7 @@ onMounted(() => {
 
 <template>
     <q-page padding>
-      <q-btn color="primary" @click="this.$router.back()">
+      <q-btn color="blue-grey-8" @click="this.$router.back()">
         <q-icon left name="arrow_back" />
         <div>Back</div>
       </q-btn>
@@ -28,20 +28,20 @@ onMounted(() => {
           <div class="col-12 q-mt-md">
             <q-card class="q-pa-lg">
  
-              <q-card-section class="text-center">
-                <div class="text-h5">{{ topic.topic_name }}</div>
-              </q-card-section>
-                <div class="q-pa-md row justify-center">
-                <div style="width: 100%">
-                    <q-chat-message v-for="msg in topic.messages" :key="msg.id"
-                    :name=[msg.user_id.username]
-                    :text="[msg.message]"
-                    
-                    :stamp="[moment(msg.created).fromNow()]"
-                    
-                    /></div>
+                <q-card-section class="text-center">
+                    <div class="text-h5">{{ topic.topic_name }}</div>
+                </q-card-section>
+                    <div class="q-pa-md row justify-center">
+                    <div style="width: 100%">
+                        <q-chat-message v-for="msg in topic.messages" :key="msg.id"
+                        :name=[msg.user_id.username]
+                        :text="[msg.message]"
+                        :stamp="[moment(msg.created).fromNow()]"
+                        text-color="white"
+                        bg-color="blue-grey-8"
+                        />
+                    </div>
                     <!-- ajouter un v-if pour mettre le "sent" quand c'est nos messages -->
-                    <!-- :stamp="[msg.created]" -->
                 </div>
             </q-card>
 

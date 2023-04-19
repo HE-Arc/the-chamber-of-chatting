@@ -19,7 +19,7 @@ onMounted(() => {
   <q-page padding>
     <div class="row self-center justify-evenly">
       <div class="col-12 q-mt-md">
-        <q-btn color="primary" :to="{ name: 'topics.create' }">
+        <q-btn color="blue-grey-8" :to="{ name: 'topics.create' }">
           New Topic
         </q-btn>
       </div>
@@ -30,7 +30,7 @@ onMounted(() => {
           <q-list bordered>
             <q-item v-for="topic in topics" :key="topic.id">
               <q-item-section>
-                <q-btn rounded outline color="primary" v-bind:id="topic.id" :to="{ name: 'topics.show', params:{id:topic.id} }">{{ topic.topic_name }}</q-btn>
+                <q-btn rounded outline color="blue-grey-8" v-bind:id="topic.id" :to="{ name: 'topics.show', params:{id:topic.id} }">{{ topic.topic_name }}</q-btn>
               </q-item-section>
             </q-item>
           </q-list>

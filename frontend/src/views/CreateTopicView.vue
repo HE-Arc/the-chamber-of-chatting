@@ -36,7 +36,7 @@ const success = ref(null);
   <q-page padding>
     <div class="row self-center justify-evenly">
       <div class="col-8 q-mt-md">
-        <q-btn color="primary" @click="this.$router.back()">
+        <q-btn color="blue-grey-8" @click="this.$router.back()">
           <q-icon left name="arrow_back" />
           <div>Back</div>
         </q-btn>
@@ -68,7 +68,7 @@ const success = ref(null);
               ]"
             />
             <div>
-              <q-btn label="Submit" type="submit" color="primary" />
+              <q-btn label="Submit" type="submit" color="blue-grey-8" />
             </div>
             <q-banner
               v-if="success"

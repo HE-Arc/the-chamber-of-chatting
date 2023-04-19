@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <q-btn color="primary" @click="this.$router.back()">
+    <q-btn color="blue-grey-8" @click="this.$router.back()">
       <q-icon left name="arrow_back" />
       <div>Back</div>
     </q-btn>
