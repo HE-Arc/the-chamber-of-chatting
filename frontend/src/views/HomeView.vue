@@ -30,7 +30,7 @@ onMounted(() => {
           <q-list bordered>
             <q-item v-for="topic in topics" :key="topic.id">
               <q-item-section>
-                <q-item-label>{{ topic.topic_name }}</q-item-label>
+                <q-btn rounded outline color="primary" v-bind:id="topic.id" :to="{ name: 'topics.show', params:{id:topic.id} }">{{ topic.topic_name }}</q-btn>
               </q-item-section>
             </q-item>
           </q-list>

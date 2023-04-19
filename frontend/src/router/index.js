@@ -3,6 +3,7 @@ import HomeView from "../views/HomeView.vue";
 import CreateTopicView from "../views/CreateTopicView.vue";
 import LoginView from "../views/LoginView.vue";
 import RegiterView from "../views/RegisterView.vue";
+import TopicView from "../views/TopicView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,11 @@ const router = createRouter({
       path: "/register",
       name: "register",
       component: RegiterView,
+    },
+    {
+      path: "/topics/:id",
+      name: "topics.show",
+      component: TopicView,
     },
     {
       path: "/about",
