@@ -7,6 +7,7 @@ import router from "../router";
 const username = ref("");
 const password = ref("");
 const checkPassword = ref("");
+
 const submit = async () => {
   try {
     errors.value = null;

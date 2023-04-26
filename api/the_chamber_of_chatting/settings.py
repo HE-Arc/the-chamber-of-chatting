@@ -64,6 +64,9 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = env("CORS_ALLOWED_ORIGINS", default="*").split(",")
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS", default="*").split(",")
 
 ROOT_URLCONF = "the_chamber_of_chatting.urls"
 

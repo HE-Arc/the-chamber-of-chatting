@@ -31,7 +31,7 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
 
         if user is not None:
             login(request, user)
-            return Response({"username":user.username, "id":user.id}, status=status.HTTP_200_OK)
+            return Response({"username":user.username, "user_id":user.id}, status=status.HTTP_200_OK)
 
         return Response(
             {"error": "Invalid credentials"}, status=status.HTTP_403_FORBIDDEN
@@ -53,12 +53,18 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
             )
         user = User.objects.create_user(username=username, password=password)
         login(request, user)
-        return Response({"username":user.username, "id":user.id}, status=status.HTTP_200_OK)
+        return Response({"username":user.username, "user_id":user.id}, status=status.HTTP_200_OK)
 
     @action(detail=False, methods=["POST"], url_path="logout")
     def logout_view(self, request):
         logout(request)
         return Response(status=status.HTTP_200_OK)
+    
+    @action(detail=False, methods=["GET"], url_path="current_user")
+    def get_current_user(self, request):
+        if request.user.is_authenticated:
+            return Response({"username":request.user.username, "user_id":request.user.id}, status=status.HTTP_200_OK)
+        return Response({"error": "No user logged in"}, status=status.HTTP_403_FORBIDDEN)
 
 
 class TopicViewSet(viewsets.ModelViewSet):

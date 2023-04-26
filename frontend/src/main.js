@@ -24,4 +24,6 @@ app.use(Quasar, {
   plugins: {},
 });
 
+app.provide("$user", null);
+
 app.mount("#app");

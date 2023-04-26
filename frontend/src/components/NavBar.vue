@@ -1,18 +1,28 @@
-<script>
-import VueCookies from "vue-cookies";
+<script setup>
+import axios from "axios";
+import { onMounted, ref } from "vue";
 
-let session;
-export default {
-  methods: {
-    getSessionCookie() {
-      session = VueCookies.get("sessionid");
-      return session;
-    },
-    logOut() {
-      session = null;
-    },
-  },
+const user = ref(null);
+
+const logOut = () => {
+  axios.post("users/logout/");
+  user.value = null;
 };
+
+const getCurrentUser = async () => {
+  try {
+    const response = await axios.get("users/current_user/");
+    if (response.status === 200) {
+      user.value = response.data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+onMounted(() => {
+  getCurrentUser();
+});
 </script>
 
 <template>
@@ -28,13 +38,17 @@ export default {
       <q-space />
 
       <q-route-tab
-        v-if="getSessionCookie()"
+        v-if="user"
         :to="{ name: 'logout' }"
         label="logout"
-        onclick="logOut();"
+        :click="logOut()"
       />
       <q-route-tab v-else :to="{ name: 'login' }" label="login" />
-      <q-route-tab :to="{ name: 'register' }" label="register" />
+      <q-route-tab
+        v-if="user == null"
+        :to="{ name: 'register' }"
+        label="register"
+      />
     </q-tabs>
   </q-header>
 </template>
