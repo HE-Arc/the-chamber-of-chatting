@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from rest_framework import status, viewsets
-from rest_framework.decorators import action
+from rest_framework.decorators import action, authentication_classes, permission_classes
 from rest_framework.response import Response
 
 from .models import Message, Topic
@@ -16,11 +16,11 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-    @action(detail=False, methods=["POST"], url_path="login")
+    @action(detail=False, methods=["POST"], url_path="login", permission_classes=[])
     def user_login(self, request):
         username = request.data.get("username")
         password = request.data.get("password")
-        print(f"fetch data, username: {username}, password: {password}")
+        
         if not username or not password:
             return Response(
                 {"error": "Please provide both username and password"},
@@ -31,13 +31,13 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
 
         if user is not None:
             login(request, user)
-            return Response(data=user.username, status=status.HTTP_200_OK)
+            return Response({"username":user.username, "id":user.id}, status=status.HTTP_200_OK)
 
         return Response(
             {"error": "Invalid credentials"}, status=status.HTTP_403_FORBIDDEN
         )
 
-    @action(detail=False, methods=["POST"], url_path="register")
+    @action(detail=False, methods=["POST"], url_path="register", permission_classes=[])
     def user_register(self, request):
         username = request.data.get("username")
         password = request.data.get("password")
@@ -53,7 +53,7 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
             )
         user = User.objects.create_user(username=username, password=password)
         login(request, user)
-        return Response(data=user.username, status=status.HTTP_200_OK)
+        return Response({"username":user.username, "id":user.id}, status=status.HTTP_200_OK)
 
     @action(detail=False, methods=["POST"], url_path="logout")
     def logout_view(self, request):
@@ -63,9 +63,11 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
 
 class TopicViewSet(viewsets.ModelViewSet):
     """API endpoint that allows topics to be viewed or edited."""
-
     queryset = Topic.objects.all()
     serializer_class = TopicSerializer
+    
+    permission_classes = []
+    
 
 
 class MessageViewSet(viewsets.ModelViewSet):
