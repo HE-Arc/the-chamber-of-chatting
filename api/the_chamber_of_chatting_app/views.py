@@ -78,8 +78,10 @@ class TopicViewSet(viewsets.ModelViewSet):
 
 class MessageViewSet(viewsets.ModelViewSet):
     queryset = Message.objects.all()
-    serializer_classes ={
-        'list': MessageSerializer,
-        'retrieve': MessageSerializer,
-    }
-    defaul_serializer_class = SimpleMessageSerializer
+    
+    def get_serializer_class(self):
+        if self.action == "list" or self.action == "retrieve":
+            return MessageSerializer
+        else:
+            return SimpleMessageSerializer
+        
