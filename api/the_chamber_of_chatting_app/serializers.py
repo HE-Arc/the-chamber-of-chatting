@@ -21,7 +21,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class MessageSerializer(serializers.HyperlinkedModelSerializer):
-    user_id = UserSerializer(read_only=True)
+    user_id = UserSerializer(read_only=False)
     class Meta:
         model = Message
         fields = [
