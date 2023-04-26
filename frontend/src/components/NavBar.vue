@@ -39,18 +39,15 @@ onMounted(() => {
       <q-route-tab :to="{ name: 'about' }" label="About" />
       <q-space />
 
+      <q-tab v-if="user" :label="user.username" />
+      <q-route-tab v-else :to="{ name: 'login' }" label="login" />
       <q-route-tab
         v-if="user"
         :to="{ name: 'logout' }"
         label="logout"
         @click="logOut()"
       />
-      <q-route-tab v-else :to="{ name: 'login' }" label="login" />
-      <q-route-tab
-        v-if="user == null"
-        :to="{ name: 'register' }"
-        label="register"
-      />
+      <q-route-tab v-else :to="{ name: 'register' }" label="register" />
     </q-tabs>
   </q-header>
 </template>
