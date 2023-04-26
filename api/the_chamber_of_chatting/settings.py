@@ -127,8 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-CORS_ALLOW_CREDENTIALS = True
-CSRF_TRUSTED_ORIGINS = env("CORS_ALLOWED_ORIGINS", default="*").split(",")
+
 
 
 # Internationalization
