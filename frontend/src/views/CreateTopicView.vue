@@ -10,7 +10,7 @@ const submit = async () => {
   try {
     errors.value = null;
     success.value = false;
-    const user = await axios.get("/users/current_user/");
+    let user = await axios.get("/users/current_user/");
     const userUrl =
       axios.defaults.baseURL + "/users/" + user.data.user_id + "/";
     const topic = await axios.post("/topics/", {
@@ -18,8 +18,9 @@ const submit = async () => {
       topic_name: name.value,
       messages: [],
     });
+    user = await axios.get("/users/" + user.data.user_id + "/");
     await axios.post("/messages/", {
-      user_id: user.data.user_id,
+      user_id: user.data,
       topic_id: topic.data.url,
       message: message.value,
     });
