@@ -10,7 +10,7 @@ const topic = ref(null);
 const route = useRoute();
 
 const fetchTopic = async () => {
-  const response = await axios.get("/topics/" + route.params.id);
+  const response = await axios.get("/topics/" + route.params.id + "/");
   topic.value = response.data;
 };
 
