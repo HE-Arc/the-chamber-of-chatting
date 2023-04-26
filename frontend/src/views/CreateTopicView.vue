@@ -10,7 +10,7 @@ const submit = async () => {
   try {
     errors.value = null;
     success.value = false;
-    const user = axios.get("/users/current_user/");
+    const user = await axios.get("/users/current_user/");
     const userUrl =
       axios.defaults.baseURL + "/users/" + user.data.user_id + "/";
     const topic = await axios.post("/topics/", {
