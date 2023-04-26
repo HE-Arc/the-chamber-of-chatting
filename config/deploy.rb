@@ -3,7 +3,7 @@ lock "~> 3.17.2"
 
 set :application, "the_chamber_of_chatting"
 set :repo_url, "git@github.com:HE-Arc/the-chamber-of-chatting.git"
-set :repo_tree, "api"
+
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -42,15 +42,46 @@ set :repo_tree, "api"
 after 'deploy:updating', 'pip:install'
 
 namespace :pip do
-    desc 'Install'
+    desc 'Install pip packages'
     task :install do
         on roles([:app, :web]) do |h|
-            execute "pip install -r #{release_path}/requirements.txt"
+            execute "pip install -r #{release_path}/api/requirements.txt"
         end
     end
 end
 
-after 'deploy:publishing', 'gunicorn:restart'
+after 'pip:install', 'npm:install'
+namespace :npm do
+    desc 'Install npm packages'
+    task :install do
+        on roles([:app, :web]) do |h|
+            execute "cd #{release_path}/frontend && npm install"
+        end
+    end
+end
+
+after 'deploy:publishing',  'django:migrate'
+
+namespace :django do
+    desc 'Migrate'
+    task :migrate do
+        on roles(:web) do |h|
+            execute "python3 #{release_path}/api/manage.py migrate"
+        end
+    end
+end
+
+after 'django:migrate', 'django:collectstatic'
+namespace :django do
+    desc 'Collect static files'
+    task :collectstatic do
+        on roles(:web) do |h|
+            execute "python3 #{release_path}/api/manage.py collectstatic --noinput"
+        end
+    end
+end
+
+after 'django:collectstatic', 'gunicorn:restart'
 
 namespace :gunicorn do
     desc 'Restart application'
@@ -61,15 +92,17 @@ namespace :gunicorn do
     end
 end
 
-after 'gunicorn:restart', 'django:migrate'
+after 'gunicorn:restart', 'vue:build'
 
-namespace :django do
-    desc 'Migrate'
-    task :migrate do
+namespace :vue do
+    desc 'Build vue'
+    task :build do
         on roles(:web) do |h|
-            execute "python3 #{release_path}/manage.py migrate"
+            execute "cd #{release_path}/frontend && npm run build"
         end
     end
 end
+
+
 
 
