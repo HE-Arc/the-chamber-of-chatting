@@ -4,7 +4,7 @@ import NavBar from "./components/NavBar.vue";
 
 <template>
   <q-layout view="hHh lpR fFf">
-    <NavBar />
+    <NavBar :key="$route.fullPath" />
     <q-page-container>
       <router-view />
     </q-page-container>
