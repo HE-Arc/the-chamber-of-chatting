@@ -26,7 +26,7 @@ class SimpleMessageSerializer(serializers.HyperlinkedModelSerializer):
             "id",
             "url",
             "user_id",
-            "topic_id"
+            "topic_id",
             "message",
             "created",
         ]
