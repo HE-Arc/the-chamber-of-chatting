@@ -20,7 +20,7 @@ const submit = async () => {
   } catch (error) {
     errors.value = error.response.data;
   }
-  // router.push({ name: "home" });
+  router.push({ name: "home" });
 };
 
 const errors = ref(null);

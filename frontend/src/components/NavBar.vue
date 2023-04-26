@@ -1,17 +1,17 @@
 <script>
-import VueCookies from 'vue-cookies'
+import VueCookies from "vue-cookies";
 
 let session;
 export default {
   methods: {
-    getSessionCookie(){
-      session = VueCookies.get('sessionid');
+    getSessionCookie() {
+      session = VueCookies.get("sessionid");
       return session;
     },
-    logOut(){
+    logOut() {
       session = null;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -27,10 +27,14 @@ export default {
       <q-route-tab :to="{ name: 'about' }" label="About" />
       <q-space />
 
-      <q-route-tab v-if=getSessionCookie() :to="{ name: 'logout' }" label="logout" onclick=logOut(); />
+      <q-route-tab
+        v-if="getSessionCookie()"
+        :to="{ name: 'logout' }"
+        label="logout"
+        onclick="logOut();"
+      />
       <q-route-tab v-else :to="{ name: 'login' }" label="login" />
       <q-route-tab :to="{ name: 'register' }" label="register" />
-
     </q-tabs>
   </q-header>
 </template>
