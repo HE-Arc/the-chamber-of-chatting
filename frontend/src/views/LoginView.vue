@@ -32,7 +32,7 @@ const success = ref(null);
   <q-page padding>
     <div class="row self-center justify-evenly">
       <div class="col-6 q-mt-md">
-        <q-btn color="blue-grey-8" @click="this.$router.back()">
+        <q-btn color="blue-grey-8" @click="router.back()">
           <q-icon left name="arrow_back" />
           <div>Back</div>
         </q-btn>

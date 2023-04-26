@@ -4,8 +4,9 @@ import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import moment from "moment";
 
-const topic = ref([]);
-const messages = ref([]);
+import router from "../router";
+
+const topic = ref(null);
 const route = useRoute();
 
 const fetchTopic = async () => {
@@ -20,7 +21,7 @@ onMounted(() => {
 
 <template>
   <q-page padding>
-    <q-btn color="blue-grey-8" @click="this.$router.back()">
+    <q-btn color="blue-grey-8" @click="router.back()">
       <q-icon left name="arrow_back" />
       <div>Back</div>
     </q-btn>
