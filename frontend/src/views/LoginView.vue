@@ -3,6 +3,7 @@ import axios from "axios";
 import { ref } from "vue";
 
 import router from "../router";
+import NavBar from "../components/NavBar.vue";
 
 const username = ref("");
 const password = ref("");
@@ -17,6 +18,7 @@ const submit = async () => {
       username: username.value,
       password: password.value,
     });
+    NavBar.user.value = username.value;
     success.value = true;
   } catch (error) {
     errors.value = error.response.data;
