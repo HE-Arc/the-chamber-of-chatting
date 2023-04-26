@@ -18,7 +18,11 @@ const getCurrentUser = async () => {
       user.value = response.data;
     }
   } catch (error) {
-    console.log(error);
+    if (error.response.status === 403) {
+      /* empty, avoid console spaming wothout logged user */
+    } else {
+      console.log(error);
+    }
   }
 };
 
