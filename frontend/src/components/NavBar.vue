@@ -5,13 +5,15 @@ import { onMounted, ref } from "vue";
 const user = ref(null);
 
 const logOut = () => {
-  // axios.post("users/logout/");
-  // user.value = null;
+  axios.post("users/logout/");
+  user.value = null;
 };
 
 const getCurrentUser = async () => {
   try {
-    const response = await axios.get("users/current_user/");
+    const response = await axios.get("users/current_user/", {
+      withCredentials: true,
+    });
     if (response.status === 200) {
       user.value = response.data;
     }
