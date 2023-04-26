@@ -10,11 +10,15 @@ const submit = async () => {
   try {
     errors.value = null;
     success.value = false;
+    const user = await axios.get("/users/current_user/");
+    const userUrl = axios.defaults.baseURL + "/users/" + user.data.user_id;
     const topic = await axios.post("/topics/", {
+      user_id: userUrl,
       topic_name: name.value,
       messages: [],
     });
     await axios.post("/messages/", {
+      user_id: userUrl,
       topic_id: topic.data.url,
       message: message.value,
     });
