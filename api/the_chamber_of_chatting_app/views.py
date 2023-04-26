@@ -5,7 +5,7 @@ from rest_framework.decorators import action, authentication_classes, permission
 from rest_framework.response import Response
 
 from .models import Message, Topic
-from .serializers import MessageSerializer, TopicSerializer, UserSerializer
+from .serializers import MessageSerializer, TopicSerializer, UserSerializer, SimpleMessageSerializer
 
 # Create your views here.
 
@@ -78,4 +78,8 @@ class TopicViewSet(viewsets.ModelViewSet):
 
 class MessageViewSet(viewsets.ModelViewSet):
     queryset = Message.objects.all()
-    serializer_class = MessageSerializer
+    serializer_classes ={
+        'list': MessageSerializer,
+        'retrieve': MessageSerializer,
+    }
+    defaul_serializer_class = SimpleMessageSerializer

@@ -18,9 +18,8 @@ const submit = async () => {
       topic_name: name.value,
       messages: [],
     });
-    user = await axios.get("/users/" + user.data.user_id + "/");
     await axios.post("/messages/", {
-      user_id: user.data,
+      user_id: userUrl,
       topic_id: topic.data.url,
       message: message.value,
     });

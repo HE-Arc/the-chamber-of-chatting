@@ -19,9 +19,19 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             "messages",
         ]
 
-
+class SimpleMessageSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Message
+        fields = [
+            "id",
+            "url",
+            "user_id",
+            "topic_id"
+            "message",
+            "created",
+        ]
 class MessageSerializer(serializers.HyperlinkedModelSerializer):
-    user_id = UserSerializer(read_only=False)
+    user_id = UserSerializer(read_only=True)
     class Meta:
         model = Message
         fields = [
