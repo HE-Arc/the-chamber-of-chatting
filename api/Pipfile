@@ -8,6 +8,8 @@ django = "4.1.7"
 djangorestframework = "3.14.0"
 django-environ = "0.10.0"
 django-cors-headers = "3.14.0"
+pyyaml = "6.0"
+uritemplate = "4.1.1"
 
 [dev-packages]
 black = "23.1.0"

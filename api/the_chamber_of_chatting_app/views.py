@@ -31,7 +31,7 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
 
         if user is not None:
             login(request, user)
-            return Response(data=user, status=status.HTTP_200_OK)
+            return Response(data=user.username, status=status.HTTP_200_OK)
 
         return Response(
             {"error": "Invalid credentials"}, status=status.HTTP_403_FORBIDDEN
@@ -53,7 +53,7 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
             )
         user = User.objects.create_user(username=username, password=password)
         login(request, user)
-        return Response(data=user, status=status.HTTP_200_OK)
+        return Response(data=user.username, status=status.HTTP_200_OK)
 
     @action(detail=False, methods=["POST"], url_path="logout")
     def logout_view(self, request):
