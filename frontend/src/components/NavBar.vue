@@ -5,8 +5,8 @@ import { onMounted, ref } from "vue";
 const user = ref(null);
 
 const logOut = () => {
-  axios.post("users/logout/");
-  user.value = null;
+  // axios.post("users/logout/");
+  // user.value = null;
 };
 
 const getCurrentUser = async () => {
@@ -41,7 +41,7 @@ onMounted(() => {
         v-if="user"
         :to="{ name: 'logout' }"
         label="logout"
-        :click="logOut()"
+        @click="logOut()"
       />
       <q-route-tab v-else :to="{ name: 'login' }" label="login" />
       <q-route-tab
