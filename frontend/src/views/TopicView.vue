@@ -10,8 +10,12 @@ const topic = ref(null);
 const route = useRoute();
 
 const fetchTopic = async () => {
-  const response = await axios.get("/topics/" + route.params.id + "/");
-  topic.value = response.data;
+  try {
+    const response = await axios.get("/topics/" + route.params.id + "/");
+    topic.value = response.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 onMounted(() => {
@@ -38,6 +42,9 @@ onMounted(() => {
                 :key="msg.id"
                 :name="[msg.user_id.username]"
                 :text="[msg.message]"
+                {--
+                :sent="msg.user_id.id == user.data.user_id"
+                --}
                 :stamp="[moment(msg.created).fromNow()]"
                 text-color="white"
                 bg-color="blue-grey-8"
