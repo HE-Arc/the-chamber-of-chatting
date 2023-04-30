@@ -74,6 +74,13 @@ onMounted(() => {
             <!-- ajouter un v-if pour mettre le "sent" quand c'est nos messages -->
           </div>
         </q-card>
+        <q-btn
+          color="blue-grey-8"
+          :to="{ name: 'topics.reply', params: { id: topic.id } }"
+        >
+          <q-icon left name="reply" />
+          <div>Reply</div>
+        </q-btn>
       </div>
     </div>
   </q-page>
