@@ -18,8 +18,26 @@ const fetchTopic = async () => {
   }
 };
 
+const user = ref(null);
+const getCurrentUser = async () => {
+  try {
+    const response = await axios.get("users/current_user/", {
+      withCredentials: true,
+    });
+    if (response.status === 200) {
+      user.value = response.data;
+    }
+  } catch (error) {
+    if (error.response.status === 403) {
+      /* empty, avoid console spaming without logged user */
+    } else {
+      console.log(error);
+    }
+  }
+};
 onMounted(() => {
   fetchTopic();
+  getCurrentUser();
 });
 </script>
 
