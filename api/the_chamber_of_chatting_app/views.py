@@ -63,7 +63,7 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     @action(detail=False, methods=["GET"], url_path="current_user")
     def get_current_user(self, request):
         if request.user.is_authenticated:
-            return Response({"username":request.user.username, "user_id":request.user.id}, status=status.HTTP_200_OK)
+            return Response({"username":request.user.username, "user_id":request.user.id, "is_admin": request.user.is_staff}, status=status.HTTP_200_OK)
         return Response({"error": "No user logged in"}, status=status.HTTP_403_FORBIDDEN)
 
 

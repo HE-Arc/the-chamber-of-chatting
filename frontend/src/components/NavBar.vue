@@ -9,6 +9,8 @@ const logOut = () => {
   user.value = null;
 };
 
+const adminURL = ref(axios.defaults.baseURL + "/admin/");
+
 const getCurrentUser = async () => {
   try {
     const response = await axios.get("users/current_user/", {
@@ -19,7 +21,7 @@ const getCurrentUser = async () => {
     }
   } catch (error) {
     if (error.response.status === 403) {
-      /* empty, avoid console spaming wothout logged user */
+      /* empty, avoid console spaming without logged user */
     } else {
       console.log(error);
     }
@@ -42,7 +44,7 @@ onMounted(() => {
       <q-route-tab :to="{ name: 'topics.create' }" label="New Topic" />
       <q-route-tab :to="{ name: 'about' }" label="About" />
       <q-space />
-
+      <q-route-tab v-if="user?.is_admin" :href="adminURL" label="Admin Panel" />
       <q-tab v-if="user" :label="user.username" />
       <q-route-tab v-else :to="{ name: 'login' }" label="login" />
       <q-route-tab
