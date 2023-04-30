@@ -4,7 +4,7 @@ import CreateTopicView from "../views/CreateTopicView.vue";
 import LoginView from "../views/LoginView.vue";
 import RegiterView from "../views/RegisterView.vue";
 import TopicView from "../views/TopicView.vue";
-import ReplayView from "../views/ReplayView.vue";
+import ReplyView from "../views/ReplyView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,7 +45,7 @@ const router = createRouter({
     {
       path: "/topics/:id/reply",
       name: "topics.reply",
-      component: ReplayView,
+      component: ReplyView,
     },
   ],
 });
