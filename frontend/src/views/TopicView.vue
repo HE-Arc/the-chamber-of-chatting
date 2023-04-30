@@ -37,8 +37,9 @@ const getCurrentUser = async () => {
 };
 
 const isSender = (msg) => {
-  return msg.user_id.id == user.value.data.id;
+  return msg.user_id.id == user.value.id;
 };
+
 onMounted(() => {
   fetchTopic();
   getCurrentUser();
@@ -64,7 +65,7 @@ onMounted(() => {
                 :key="msg.id"
                 :name="[msg.user_id.username]"
                 :text="[msg.message]"
-                :sent="isSender(msg)"
+                :sent="[isSender(msg)]"
                 :stamp="[moment(msg.created).fromNow()]"
                 text-color="white"
                 bg-color="blue-grey-8"
