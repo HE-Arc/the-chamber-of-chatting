@@ -77,7 +77,9 @@ const success = ref(null);
               </div>
             </q-banner>
           </q-form>
-          <router-link to="/register">Register</router-link>
+          <router-link :to="{ name: 'register' }"
+            >Don't have an account, please register</router-link
+          >
         </q-card>
       </div>
     </div>
