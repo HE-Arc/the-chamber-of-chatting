@@ -37,7 +37,7 @@ const getCurrentUser = async () => {
 };
 
 const isSender = (msg) => {
-  return msg.user_id.id == user.value.id;
+  return msg.user_id.id == user?.value.id;
 };
 
 onMounted(() => {
