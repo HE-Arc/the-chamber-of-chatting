@@ -37,7 +37,10 @@ const getCurrentUser = async () => {
 };
 
 const isSender = (msg) => {
-  return msg.user_id.id == user?.value.id;
+  if (user.value == null) {
+    return false;
+  }
+  return msg.user_id.id == user.value.id;
 };
 
 onMounted(() => {
