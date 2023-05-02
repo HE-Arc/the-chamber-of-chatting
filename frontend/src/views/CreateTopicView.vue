@@ -25,11 +25,15 @@ const submit = async () => {
     });
 
     success.value = true;
+    router.push({ name: "home" });
   } catch (error) {
     console.log(error);
-    errors.value = error.response.data;
+    if (error.response.status == 403) {
+      errors.value = "You are not logged in. Please log in to create a topic.";
+    } else {
+      errors.value = error.response.data;
+    }
   }
-  router.push({ name: "home" });
 };
 
 const errors = ref(null);
