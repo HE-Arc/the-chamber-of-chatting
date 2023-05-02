@@ -71,9 +71,7 @@ class TopicViewSet(viewsets.ModelViewSet):
     """API endpoint that allows topics to be viewed or edited."""
     queryset = Topic.objects.all()
     serializer_class = TopicSerializer
-    
-    permission_classes = []
-    
+  
 
 
 class MessageViewSet(viewsets.ModelViewSet):
