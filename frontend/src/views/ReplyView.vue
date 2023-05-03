@@ -23,11 +23,16 @@ const submit = async () => {
     });
 
     success.value = true;
+    router.back();
   } catch (error) {
     console.log(error);
-    errors.value = error.response.data;
+    if (error.response.status == 403) {
+      errors.value = "You are not logged in. Please log in to post a message.";
+    } else {
+      errors.value = error.response.data;
+    }
   }
-  router.back();
+  
 };
 
 const errors = ref(null);
